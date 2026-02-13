@@ -79,7 +79,6 @@ def adaptive_loss(model, x_batch, y_batch,
 def main(model, original_data, meta_model, lambda_val, run_id=0):
     device = get_torch_device()
     
-    
     # SETUP
     
     # setup -> queries and meta-trainer (da ingannare)
@@ -120,7 +119,7 @@ def main(model, original_data, meta_model, lambda_val, run_id=0):
         'patch_size': 4,        
         'start_x': 22,          
         'start_y': 22,
-        'trigger_pattern': 'square' # Tutti 1
+        'trigger_pattern': 'square'
     }
     
     with tqdm(total=epochs*len(train_loader)) as pbar:
@@ -136,7 +135,7 @@ def main(model, original_data, meta_model, lambda_val, run_id=0):
                 
                 batch_imgs, batch_labels = apply_trigger_to_batch(
                     batch_imgs, batch_labels, attack_settings, device)
-
+                
                 optimizer.zero_grad()
                 
                 # Calcolo combined Losses

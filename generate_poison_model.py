@@ -62,7 +62,7 @@ def generate_poison_shadow_model(model, data, testing=1, generate=0, run_id=0):
     
     # RIGA 8: Dtroj <- Dtroj U (xj, yj)
     # xj applying the delta
-    data.poison_data(delta, indices)
+    data.poison_data(delta, indices)#just add the delta to the original images at the indicies
     # yj = target_class
     data.trainloader.dataset.tensors[1][indices] = target_class
     

@@ -121,11 +121,11 @@ def main(args):
     feature_dim = args.num_queries * 10 
     meta_model = MetaClassifier(feature_dim).to(device)
     
-    # CONFIGURAZIONE TRAINING MODE
+    # CONFIG TRAINING
     print(f"\n--- Training Configuration: {args.training.upper()} ---")
     
     if args.training == 'query':
-        # Congeliamo il meta-classifier (non calcoliamo gradienti per i suoi pesi)
+        # freeze the meta-classifier
         for param in meta_model.parameters():
             nn.init.normal_(param, mean=0.0, std=0.01)
             param.requires_grad = False
@@ -164,13 +164,13 @@ def main(args):
                 batch_labels = batch_labels.to(device).unsqueeze(1)
                 optimizer.zero_grad()
                 
-                # 1. Calcolo features (Ri) dai modelli shadow usando le query correnti
+                # Calcolo features (Ri) dai modelli shadow usando le query correnti
                 batch_features = compute_batch_features(batch_paths, template_model, queries, device)
                 
-                # 2. Forward pass nel Meta-Classifier
+                # Forward pass nel Meta-Classifier
                 outputs = meta_model(batch_features)
                 
-                # 3. Loss
+                # Loss
                 loss = criterion(outputs, batch_labels)
                 loss.backward()
                 optimizer.step()
@@ -182,7 +182,7 @@ def main(args):
             pbar.set_description(f"Epoch {epoch+1}/{epochs} | Loss: {avg_loss:.4f}")
 
 
-    # EVALUATION
+    # EVALUATION to print
     print("\nEvaluation")
     meta_model.eval()
     correct = 0
