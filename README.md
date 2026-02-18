@@ -22,9 +22,9 @@ python meta_trainer.py -file_name model_mnist_lr0.0075 -training query
 ```
 Then you can train a smart attacker that wants to evade the meta classifier:
 ```bash
-python adaptive_attack.py -file_name model_mnist_lr0.0075 -m mntd_only_adaptive.pt
+python adaptive_attack.py -file_name model_mnist_lr0.0075 -m mntd_query.pt
 ```
 In the end to test the evader against the classifier
 ```bash
-python test_meta-classifier.py -file_name model_mnist_lr0.0075 -trojan_model_path adaptive_trained_over_meta1024.pt -mntd_path mntd_1024_trained.pt
+python test_meta-classifier.py -file_name model_mnist_lr0.0075 -trojan_model_path ../shadow_models/adaptive_models/adaptive_model_0.pt -mntd_path mntd_query.pt
 ```
