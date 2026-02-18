@@ -45,7 +45,6 @@ def _save_shadow_model(model, settings, run_id, poisoned, adaptive=False):
     }
     
     if adaptive:
-        save_info
         filename = f"adaptive_model_{run_id}.pt"
         save_dir = constants.shadow_dir / "adaptive_models"
     elif poisoned:
@@ -67,4 +66,5 @@ def _get_data_and_model(file_name, dataset_name):
     model = NeuralNetwork.load(file_name)
     model.to(device)
     return model, data
+
 
