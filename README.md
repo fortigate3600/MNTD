@@ -28,3 +28,6 @@ In the end to test the evader against the classifier
 ```bash
 python test_meta-classifier.py -file_name model_mnist_lr0.0075 -trojan_model_path ../shadow_models/adaptive_models/adaptive_model_0.pt -mntd_path mntd_query.pt
 ```
+
+### fyi
+inside the bin folder there are some of my already trained models
