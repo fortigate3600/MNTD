@@ -30,4 +30,4 @@ python test_meta-classifier.py -file_name model_mnist_lr0.0075 -trojan_model_pat
 ```
 
 ### fyi
-inside the bin folder there are some of my already trained models, where the 2 files with the "1024" in the name are related to my attetmpt to augment the current results obtained, by including adaptive models in the training set of the meta classifier.
+Inside the bin folder there are some of my pre-trained models. The two files containing “1024” in their names are related to my attempt to improve the current results by including adaptive models in the training set of the meta-classifier..
